@@ -1,0 +1,73 @@
+@model Musikdatenbank.Models.Song
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Song Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Song Details</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Artist)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Artist)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Album)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Album)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Genre)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Genre)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ReleaseDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ReleaseDate)
+            </dd>
+
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.FilePath)
+            </dt>
+            <dd class="col-sm-9">
+                @if (!string.IsNullOrEmpty(Model.FilePath))
+                {
+                    <audio controls>
+                        <source src="@Url.Content(Model.FilePath)" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                }
+                else
+                {
+                    <span>No file available</span>
+                }
+            </dd>
+        </dl>
+
+        <div class="d-flex justify-content-between">
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
